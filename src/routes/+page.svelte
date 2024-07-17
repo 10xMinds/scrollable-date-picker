@@ -5,7 +5,7 @@
 <h1>Welcome to your ScrollableDatePicker</h1>
 
 <b> ScrollableDatePicker example: </b>
-<div class="w-1/2">
+<div class="w-3/4">
 	<ScrollableDatePicker
 		selectedDate="2023-01-23"
 		rowsShown={3}
