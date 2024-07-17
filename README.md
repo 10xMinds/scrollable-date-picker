@@ -2,30 +2,36 @@
 
 A scrollable datepicker designed for touch screen interfaces with Svelte.
 
-
 ### Installation:
- To be added after publishing
 
-Usage:
+Add the package to your dependencies
 
+NPM:
+
+```bash
+    npm install @10xminds/scrollable-date-picker
+
+```
+
+Yarn:
+
+```bash
+    npm install @10xminds/scrollable-date-picker
+```
 
 ```svelte
 <script>
-    import { ScrollableDatePicker } from "@svelte-10xminds/scrollable-date-picker";
+    import { ScrollableDatePicker } from "@10xminds/scrollable-date-picker";
 
-	<ScrollableDatePicker
-		selectedDate="2023-01-23"
-		rowsShown={3}
-		separatorWidth={4}
-		rowBackgroundColor="#03FFFF"
-	/>
+    <ScrollableDatePicker
+        selectedDate="2023-01-23"
+        rowsShown={3}
+        separatorWidth={4}
+        rowBackgroundColor="#03FFFF"
+    />
 ```
 
-
 ## TODO: Add more documentation with options
-
-
-
 
 # Development Instructions
 
@@ -34,7 +40,6 @@ Instal dependencies with
 ```bash
 npm install
 ```
-
 
 ```bash
 npm run dev

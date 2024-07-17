@@ -3,8 +3,14 @@
 	"version": "0.1.1",
 	"license": "MIT",
 	"contributors": [
-		{"name": "Adhil Rumais", "email": "adhilrumais007@gmail.com"},
-		{"name": "Irshad P I", "email": "irshad@10xminds.dev"}
+		{
+			"name": "Adhil Rumais",
+			"email": "adhilrumais007@gmail.com"
+		},
+		{
+			"name": "Irshad P I",
+			"email": "irshad@10xminds.dev"
+		}
 	],
 	"scripts": {
 		"dev": "vite dev",

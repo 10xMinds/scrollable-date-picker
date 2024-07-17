@@ -1,4 +1,6 @@
 // Reexport your entry components here
 
-export { default as ScrollableDatePicker } from './ScrollableDatePicker.svelte';
-export { default as ScrollableSelect } from './ScrollableSelect.svelte';
+import ScrollableDatePicker from './ScrollableDatePicker.svelte';
+import ScrollableSelect from './ScrollableSelect.svelte';
+
+export { ScrollableDatePicker, ScrollableSelect };
