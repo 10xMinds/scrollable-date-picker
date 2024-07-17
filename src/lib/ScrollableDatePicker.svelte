@@ -5,7 +5,6 @@
 	export let separatorWidth = 4;
 	export let backgroundClass = 'rounded-full';
 	export let highlightClass = 'text-xxl';
-	export let rowBackgroundColor = '#00EFAF';
 
 	let currentDay = parseInt(selectedDate.slice(8));
 	let currentMonth = parseInt(selectedDate.slice(5, 7));
@@ -50,6 +49,7 @@
 <div class="relative w-full">
 	<div class="z-50 flex w-full overflow-y-auto text-center">
 		<ScrollableSelect
+			maxWidth="10rem"
 			specialClass={highlightClass}
 			items={months}
 			{rowsShown}
@@ -62,6 +62,7 @@
 			<div class="h-full w-full"></div>
 		</div>
 		<ScrollableSelect
+			maxWidth="4rem"
 			specialClass={highlightClass}
 			items={days}
 			{rowsShown}
@@ -74,6 +75,7 @@
 			<div class="h-full w-full"></div>
 		</div>
 		<ScrollableSelect
+			maxWidth="6rem"
 			specialClass={highlightClass}
 			items={years}
 			{rowsShown}
@@ -82,6 +84,6 @@
 	</div>
 	<div
 		class="absolute -z-10 flex w-full {backgroundClass}"
-		style="background: {rowBackgroundColor};height: 4rem; bottom: {((rowsShown - 1) / 2) * 4}rem"
+		style="height: 4rem; bottom: {((rowsShown - 1) / 2) * 4}rem"
 	></div>
 </div>
