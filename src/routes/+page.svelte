@@ -1,3 +1,15 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import ScrollableDatePicker from '$lib/ScrollableDatePicker.svelte';
+</script>
+
+<h1>Welcome to your ScrollableDatePicker</h1>
+
+<b> ScrollableDatePicker example: </b>
+<div class="w-1/2">
+	<ScrollableDatePicker
+		selectedDate="2023-01-23"
+		rowsShown={3}
+		separatorWidth={4}
+		rowBackgroundColor="#03FFFF"
+	/>
+</div>
