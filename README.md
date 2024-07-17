@@ -16,7 +16,7 @@ NPM:
 Yarn:
 
 ```bash
-    npm install @10xminds/scrollable-date-picker
+    yarn add @10xminds/scrollable-date-picker
 ```
 
 ```svelte

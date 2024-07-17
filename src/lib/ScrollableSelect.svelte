@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import '../app.css';
+	import './scrollable-select.css';
 
 	type Item = {
 		name: string;
