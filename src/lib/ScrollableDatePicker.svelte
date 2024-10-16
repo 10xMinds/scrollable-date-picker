@@ -115,8 +115,8 @@
 	$: selectedDate = `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
 </script>
 
-<div class="relative w-full">
-	<div class="z-50 flex w-full overflow-y-auto text-center">
+<div class="relative parent">
+	<div class="z-50 flex w-full justify-center overflow-y-auto text-center">
 		<ScrollableSelect
 			maxWidth="10rem"
 			specialClass={highlightClass}
@@ -156,3 +156,14 @@
 		style="height: 4rem; bottom: {((rowsShown - 1) / 2) * 4}rem"
 	></div>
 </div>
+
+<style>
+	.parent {
+		width: 100%;
+	}
+	@media (min-width: 640px) {
+		.parent {
+			width: 50%;
+		}
+	}
+</style>

@@ -455,3 +455,6 @@ video {
 .overflow-x-hidden {
 	overflow-x: hidden;
 }
+.justify-center {
+	justify-content: center;
+}
