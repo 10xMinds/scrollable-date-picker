@@ -96,7 +96,7 @@
 	>
 		<ul
 			bind:this={scrollContainer}
-			class="no-scrollbar overflow-x-hidden snap-y snap-mandatory overflow-scroll"
+			class="no-scrollbar overflow-x-hidden snap-y snap-mandatory overflow-scroll z-10"
 			on:scroll={handleScroll}
 		>
 			<!--  eslint-disable @typescript-eslint/no-unused-vars -->
