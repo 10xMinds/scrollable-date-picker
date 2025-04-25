@@ -5,16 +5,39 @@
 	export let separatorWidth = 4;
 	export let backgroundClass = 'rounded-full';
 	export let highlightClass = 'text-xxl';
+	export let startFrom: string | undefined = undefined;
+	export let endAt: string | undefined = undefined;
 
 	let currentDay = parseInt(selectedDate.slice(8));
 	let currentMonth = parseInt(selectedDate.slice(5, 7));
 	let currentYear = parseInt(selectedDate.slice(0, 4));
 
-	const years = Array.from({ length: 200 }, (_, i) => {
-		return { name: `${i + 1910}`, value: i + 1910 };
-	});
+	const getMinYear = () => {
+		if (startFrom) {
+			const startYear = parseInt(startFrom.split('-')[0]);
+			if (isNaN(startYear)) {
+				throw Error('Invalid `startFrom');
+			}
+			return startYear;
+		}
+		const year = new Date().getFullYear() - 100;
+		return year;
+	};
+	const getMaxYear = () => {
+		if (endAt) {
+			const endYear = parseInt(endAt.split('-')[0]);
+			if (isNaN(endYear)) {
+				throw Error('Invalid `endAt`');
+			}
+			return endYear;
+		}
+		return new Date().getFullYear() + 100;
+	};
 
-	const months = [
+	let minYear = getMinYear();
+	let maxYear = getMaxYear();
+
+	const allMonths = [
 		{ name: 'January', value: 1 },
 		{ name: 'February', value: 2 },
 		{ name: 'March', value: 3 },
@@ -28,22 +51,68 @@
 		{ name: 'November', value: 11 },
 		{ name: 'December', value: 12 }
 	];
-	let days = Array.from({ length: 31 }, (_, i) => {
-		return { name: `${i + 1}`, value: i + 1 };
-	});
 
-	$: days = getDaysInMonth(currentMonth, currentYear);
-
-	function getDaysInMonth(currentMonth: number, currentYear: number) {
-		const daysCount = new Date(currentYear, currentMonth, 0).getDate();
-		return Array.from({ length: daysCount }, (_, i) => {
-			return { name: `${i + 1}`, value: i + 1 };
+	const getYears = () => {
+		return Array.from({ length: maxYear - minYear + 1 }, (_, i) => {
+			return { name: `${minYear + i}`, value: minYear + i };
 		});
-	}
+	};
 
-	$: {
-		selectedDate = `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
-	}
+	const getMonths = (currentYear: number) => {
+		let start = 1;
+		let end = 12;
+		if (currentYear === maxYear && endAt !== undefined) {
+			end = parseInt(endAt.split('-')[1]);
+			if (isNaN(end)) {
+				throw Error('Invalid `endAt');
+			}
+		}
+		if (currentYear === minYear && startFrom !== undefined) {
+			start = parseInt(startFrom.split('-')[1]);
+			if (isNaN(start)) {
+				throw Error('Invalid `startFrom`');
+			}
+		}
+		return allMonths.filter(({ value }) => value >= start && value <= end);
+	};
+
+	const getDays = (currentYear: number, currentMonth: number) => {
+		let start = 1;
+		let end = new Date(currentYear, currentMonth, 0).getDate();
+		if (currentYear === maxYear && endAt !== undefined) {
+			const maxMonth = parseInt(endAt.split('-')[1]);
+			if (isNaN(maxMonth)) {
+				throw Error('Invalid `endAt`');
+			}
+			if (maxMonth === currentMonth) {
+				end = parseInt(endAt.split('-')[2]);
+				if (isNaN(end)) {
+					throw Error('Invalid endAt');
+				}
+			}
+		}
+		if (currentYear === minYear && startFrom !== undefined) {
+			const minMonth = parseInt(startFrom.split('-')[1]);
+			if (isNaN(minMonth)) {
+				throw Error('Invalid `startFrom`');
+			}
+			if (minMonth === currentMonth) {
+				start = parseInt(startFrom.split('-')[2]);
+				if (isNaN(start)) {
+					throw Error('Invalid `startFrom`');
+				}
+			}
+		}
+		return Array.from({ length: end - start + 1 }, (_, i) => ({
+			name: `${start + i}`,
+			value: start + i
+		}));
+	};
+
+	const years = getYears();
+	$: months = getMonths(currentYear);
+	$: days = getDays(currentYear, currentMonth);
+	$: selectedDate = `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
 </script>
 
 <div class="relative w-full">
