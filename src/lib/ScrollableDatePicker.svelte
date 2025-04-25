@@ -152,7 +152,7 @@
 		/>
 	</div>
 	<div
-		class="absolute -z-10 flex w-full {backgroundClass}"
+		class="absolute flex w-full {backgroundClass}"
 		style="height: 4rem; bottom: {((rowsShown - 1) / 2) * 4}rem"
 	></div>
 </div>
